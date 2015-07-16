@@ -7,7 +7,12 @@ describe Memonic do
       allow(memoizer).to receive(:computation).and_call_original
     end
 
-    it "returns the computation result" do
+    it "returns the computation result on the first call" do
+      expect(memoizer.value).to be result
+    end
+
+    it "returns the same result on subsequent calls" do
+      memoizer.value
       expect(memoizer.value).to be result
     end
 
