@@ -17,7 +17,7 @@ module Memonic
 
   module ClassMethods
     def memoize(name, &block)
-      variable = "@#{name}"
+      variable = "@#{name}".to_sym
       define_method(name) { memoize(variable, &block) }
     end
   end
