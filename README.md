@@ -25,7 +25,7 @@ equivalent of:
 
 Note that unlike the more usual `@value ||= computation` pattern, Memonic
 guarantees that the computation is only executed once, even if it returns
-`nil` or `false.
+`nil` or `false`.
 
 `memoize` is also available as an instance method. I'm not entirely sure why
 you would want to use it, but if you do, here's how:
