@@ -11,11 +11,11 @@ module Memonic
 
   private
 
-  def memoize(variable)
+  def memoize(variable, &block)
     if instance_variable_defined?(variable)
       instance_variable_get(variable)
     else
-      instance_variable_set(variable, yield)
+      instance_variable_set(variable, instance_exec(&block))
     end
   end
 
