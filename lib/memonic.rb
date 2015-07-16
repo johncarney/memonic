@@ -19,18 +19,10 @@ module Memonic
 
   module ClassMethods
     def memoize(name, &block)
-      define_method("__#{name}__", &block)
-      class_eval <<-RUBY
-        def #{name}
-          @#{name} || begin
-            if defined?(@#{name})
-              @#{name}
-            else
-              @#{name} = __#{name}__
-            end
-          end
-        end
-      RUBY
+      define_method(name) do
+        singleton_class.class_eval { attr_reader name }
+        instance_variable_set("@#{name}", instance_exec(&block))
+      end
     end
   end
 end
