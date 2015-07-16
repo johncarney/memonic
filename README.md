@@ -2,6 +2,7 @@
 
 [![Gem Version][gem-badge]][gem]
 [![Build status][build-badge]][build]
+[![Coverage Status][coverage-badge]][coverage]
 
 ## Introduction
 
