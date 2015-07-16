@@ -1,12 +1,8 @@
 require "memonic/version"
 
 module Memonic
-  if defined?(ActiveSupport::Concern)
-    extend ActiveSupport::Concern
-  else
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
+  def self.included(base)
+    base.extend(ClassMethods)
   end
 
   private
