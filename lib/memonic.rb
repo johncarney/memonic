@@ -10,7 +10,7 @@ module Memonic
   def memoize(variable, &block)
     instance_variable_get(variable) || begin
       if instance_variable_defined?(variable)
-        nil
+        instance_variable_get(variable)
       else
         instance_variable_set(variable, instance_exec(&block))
       end
@@ -22,10 +22,13 @@ module Memonic
       define_method("compute_#{name}", &block)
       class_eval <<-RUBY
         def #{name}
-          unless defined? @#{name}
-            @#{name} = compute_#{name}
+          @#{name} || begin
+            if defined?(@#{name})
+              @#{name}
+            else
+              @#{name} = compute_#{name}
+            end
           end
-          @#{name}
         end
       RUBY
     end
