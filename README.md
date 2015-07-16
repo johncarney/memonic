@@ -1,5 +1,7 @@
 # Memonic
 
+[![Build status][build-badge]][build]
+
 ## Introduction
 
 Memonic is a very simple, lightweight memoization helper. The simplest way to
