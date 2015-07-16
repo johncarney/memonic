@@ -1,5 +1,6 @@
 # Memonic
 
+[![Gem Version][gem-badge]][gem]
 [![Build status][build-badge]][build]
 
 ## Introduction
