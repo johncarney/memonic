@@ -19,14 +19,14 @@ module Memonic
 
   module ClassMethods
     def memoize(name, &block)
-      define_method("compute_#{name}", &block)
+      define_method("__#{name}__", &block)
       class_eval <<-RUBY
         def #{name}
           @#{name} || begin
             if defined?(@#{name})
               @#{name}
             else
-              @#{name} = compute_#{name}
+              @#{name} = __#{name}__
             end
           end
         end
