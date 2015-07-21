@@ -20,7 +20,7 @@ module Memonic
   module ClassMethods
     def memoize(name, &block)
       define_method(name) do
-        singleton_class.class_eval { attr_reader name }
+        singleton_class.send(:attr_reader, name.to_sym)
         instance_variable_set("@#{name}", instance_exec(&block))
       end
     end
