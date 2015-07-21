@@ -8,17 +8,29 @@ module Memonic
   private
 
   def memoize(variable, &block)
-    if instance_variable_defined?(variable)
-      instance_variable_get(variable)
-    else
-      instance_variable_set(variable, instance_exec(&block))
+    instance_variable_get(variable) || begin
+      if instance_variable_defined?(variable)
+        instance_variable_get(variable)
+      else
+        instance_variable_set(variable, instance_exec(&block))
+      end
     end
   end
 
   module ClassMethods
     def memoize(name, &block)
-      variable = "@#{name}".to_sym
-      define_method(name) { memoize(variable, &block) }
+      define_method("__#{name}__", &block)
+      class_eval <<-RUBY
+        def #{name}
+          @#{name} || begin
+            if defined?(@#{name})
+              @#{name}
+            else
+              @#{name} = __#{name}__
+            end
+          end
+        end
+      RUBY
     end
   end
 end
