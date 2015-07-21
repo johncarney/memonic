@@ -44,6 +44,11 @@ you would want to use it, but if you do, here's how:
 
 Note that the '@' prefix **is** necessary.
 
+## Notes
+
+Calling `memoize(:value) { ... }` defines a `__value__` method as well as
+`value`.
+
 ## Background
 
 Memoization is a common optimization technique in which the result of a
