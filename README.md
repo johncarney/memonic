@@ -46,8 +46,8 @@ Note that the '@' prefix **is** necessary.
 
 ## Notes
 
-Calling `memoize(:value) { ... }` defines a `__value__` method as well as
-`value`.
+Calling `memoize(:value) { ... }` on the class defines a `__value__` method
+as well as `value`.
 
 ## Background
 
